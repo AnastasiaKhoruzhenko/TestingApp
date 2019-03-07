@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/listOfTickets"
+        android:title="Список билетов">
+    </item>
+
+    <item
+        android:id="@+id/infoAboutTest"
+        android:title="Информация о тесте"
+        >
+    </item>
+
+    <item
+        android:id="@+id/results"
+        android:title="Результаты тестирования">
+    </item>
+
+    <item
+        android:id="@+id/sendResults"
+        android:title="Отправить результаты">
+    </item>
+
+    <item
+        android:id="@+id/exit"
+        android:title="Выйти">
+    </item>
+
+</menu>
