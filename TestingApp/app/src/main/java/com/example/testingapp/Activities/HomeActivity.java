@@ -1,6 +1,7 @@
 package com.example.testingapp.Activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -8,10 +9,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.testingapp.Modules.Question;
 import com.example.testingapp.R;
 
 public class HomeActivity extends AppCompatActivity {
@@ -43,6 +46,11 @@ public class HomeActivity extends AppCompatActivity {
                 //user choose the category in the menu
                 switch (id) {
                     case R.id.listOfTickets:
+                        Log.d("success", "  reading tap");
+                        Intent intent=new Intent(getApplicationContext(), QuestionActivity.class);
+//                        intent.putExtra("ticket_number", "Билет №1");
+                        startActivity(intent);
+
                         Toast.makeText(HomeActivity.this, "Список билетов", Toast.LENGTH_SHORT).show();
                         break;
 
@@ -65,6 +73,8 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
     }
 
     @Override
