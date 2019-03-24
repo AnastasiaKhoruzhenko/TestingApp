@@ -79,7 +79,7 @@ public class QuestionActivity extends AppCompatActivity {
                     answer4.setVisibility(View.GONE);
                     answer5.setVisibility(View.GONE);
                     questionText.setText(qlist.get(i).getQuestion());
-                    questionNumber.setText("Вопрос " + total);
+                    questionNumber.setText("Вопрос " + total+" из 11");
                     chooseFrom2Answers(i);
                     break;
                 case 5:
@@ -89,7 +89,7 @@ public class QuestionActivity extends AppCompatActivity {
                     answer4.setVisibility(View.GONE);
                     answer5.setVisibility(View.GONE);
                     questionText.setText(qlist.get(i).getQuestion());
-                    questionNumber.setText("Вопрос " + total);
+                    questionNumber.setText("Вопрос " + total+" из 11");
                     chooseFrom3Answers(i);
                     break;
                 case 6:
@@ -99,7 +99,7 @@ public class QuestionActivity extends AppCompatActivity {
                     answer4.setText(qlist.get(i).getAnswer4());
                     answer5.setVisibility(View.GONE);
                     questionText.setText(qlist.get(i).getQuestion());
-                    questionNumber.setText("Вопрос " + total);
+                    questionNumber.setText("Вопрос " + total+" из 11");
                     answer1.setEnabled(true);
                     answer2.setEnabled(true);
                     answer3.setEnabled(true);
@@ -113,7 +113,7 @@ public class QuestionActivity extends AppCompatActivity {
                     answer4.setText(qlist.get(i).getAnswer4());
                     answer5.setText(qlist.get(i).getAnswer5());
                     questionText.setText(qlist.get(i).getQuestion());
-                    questionNumber.setText("Вопрос " + total);
+                    questionNumber.setText("Вопрос " + total+" из 11");
                     chooseFrom5Answers(i);
                     break;
             }
@@ -128,12 +128,6 @@ public class QuestionActivity extends AppCompatActivity {
         answer4.setEnabled(true);
         answer5.setEnabled(true);
 
-        answer1.setBackgroundColor(Color.BLUE);
-        answer2.setBackgroundColor(Color.BLUE);
-        answer3.setBackgroundColor(Color.BLUE);
-        answer4.setBackgroundColor(Color.BLUE);
-        answer5.setBackgroundColor(Color.BLUE);
-
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,39 +140,21 @@ public class QuestionActivity extends AppCompatActivity {
                         answer5.setEnabled(false);
 
                         if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer1.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer1.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
-                        } else {
+                        }
+                        else {
                             //answer is wrong...
-                            answer1.setBackgroundColor(Color.RED);
-                            if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer2.setBackgroundColor(Color.GREEN);
-                            } else if (answer3.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer3.setBackgroundColor(Color.GREEN);
-                            } else if (answer4.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer4.setBackgroundColor(Color.GREEN);
-                            } else if (answer5.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer5.setBackgroundColor(Color.GREEN);
-                            }
-
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
-                                    answer3.setBackgroundColor(Color.BLUE);
-                                    answer4.setBackgroundColor(Color.BLUE);
-                                    answer5.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -191,39 +167,20 @@ public class QuestionActivity extends AppCompatActivity {
                         answer4.setEnabled(false);
                         answer5.setEnabled(false);
                         if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer2.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer2.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer2.setBackgroundColor(Color.RED);
-                            if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer1.setBackgroundColor(Color.GREEN);
-                            } else if (answer3.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer3.setBackgroundColor(Color.GREEN);
-                            } else if (answer4.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer4.setBackgroundColor(Color.GREEN);
-                            } else if (answer5.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer5.setBackgroundColor(Color.GREEN);
-                            }
-
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
-                                    answer3.setBackgroundColor(Color.BLUE);
-                                    answer4.setBackgroundColor(Color.BLUE);
-                                    answer5.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -236,39 +193,20 @@ public class QuestionActivity extends AppCompatActivity {
                         answer4.setEnabled(false);
                         answer5.setEnabled(false);
                         if (answer3.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer3.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer3.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer3.setBackgroundColor(Color.RED);
-                            if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer1.setBackgroundColor(Color.GREEN);
-                            } else if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer2.setBackgroundColor(Color.GREEN);
-                            } else if (answer4.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer4.setBackgroundColor(Color.GREEN);
-                            } else if (answer5.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer5.setBackgroundColor(Color.GREEN);
-                            }
-
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
-                                    answer3.setBackgroundColor(Color.BLUE);
-                                    answer4.setBackgroundColor(Color.BLUE);
-                                    answer5.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -281,38 +219,21 @@ public class QuestionActivity extends AppCompatActivity {
                         answer4.setEnabled(false);
                         answer5.setEnabled(false);
                         if (answer4.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer4.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer4.setBackgroundColor(Color.GREEN);
+//                                    answer4.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer4.setBackgroundColor(Color.RED);
-                            if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer1.setBackgroundColor(Color.GREEN);
-                            } else if (answer3.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer3.setBackgroundColor(Color.GREEN);
-                            } else if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer2.setBackgroundColor(Color.GREEN);
-                            } else if (answer5.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer5.setBackgroundColor(Color.GREEN);
-                            }
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
-                                    answer3.setBackgroundColor(Color.BLUE);
-                                    answer4.setBackgroundColor(Color.BLUE);
-                                    answer5.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -325,38 +246,20 @@ public class QuestionActivity extends AppCompatActivity {
                         answer4.setEnabled(false);
                         answer5.setEnabled(false);
                         if (answer5.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer5.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer5.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer5.setBackgroundColor(Color.RED);
-                            if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer1.setBackgroundColor(Color.GREEN);
-                            } else if (answer3.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer3.setBackgroundColor(Color.GREEN);
-                            } else if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer2.setBackgroundColor(Color.GREEN);
-                            } else if (answer4.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer4.setBackgroundColor(Color.GREEN);
-                            }
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
-                                    answer3.setBackgroundColor(Color.BLUE);
-                                    answer4.setBackgroundColor(Color.BLUE);
-                                    answer5.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -394,36 +297,20 @@ public class QuestionActivity extends AppCompatActivity {
                         answer4.setEnabled(false);
 
                         if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer1.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer1.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer1.setBackgroundColor(Color.RED);
-                            if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer2.setBackgroundColor(Color.GREEN);
-                            } else if (answer3.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer3.setBackgroundColor(Color.GREEN);
-                            } else if (answer4.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer4.setBackgroundColor(Color.GREEN);
-                            }
-
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
-                                    answer3.setBackgroundColor(Color.BLUE);
-                                    answer4.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -435,36 +322,20 @@ public class QuestionActivity extends AppCompatActivity {
                         answer3.setEnabled(false);
                         answer4.setEnabled(false);
                         if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer2.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer2.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer2.setBackgroundColor(Color.RED);
-                            if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer1.setBackgroundColor(Color.GREEN);
-                            } else if (answer3.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer3.setBackgroundColor(Color.GREEN);
-                            } else if (answer4.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer4.setBackgroundColor(Color.GREEN);
-                            }
-
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
-                                    answer3.setBackgroundColor(Color.BLUE);
-                                    answer4.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -476,36 +347,20 @@ public class QuestionActivity extends AppCompatActivity {
                         answer3.setEnabled(false);
                         answer4.setEnabled(false);
                         if (answer3.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer3.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer3.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer3.setBackgroundColor(Color.RED);
-                            if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer1.setBackgroundColor(Color.GREEN);
-                            } else if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer2.setBackgroundColor(Color.GREEN);
-                            } else if (answer4.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer4.setBackgroundColor(Color.GREEN);
-                            }
-
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
-                                    answer3.setBackgroundColor(Color.BLUE);
-                                    answer4.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -517,35 +372,20 @@ public class QuestionActivity extends AppCompatActivity {
                         answer3.setEnabled(false);
                         answer4.setEnabled(false);
                         if (answer4.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer4.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer4.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer4.setBackgroundColor(Color.RED);
-                            if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer1.setBackgroundColor(Color.GREEN);
-                            } else if (answer3.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer3.setBackgroundColor(Color.GREEN);
-                            } else if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer2.setBackgroundColor(Color.GREEN);
-                            }
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
-                                    answer3.setBackgroundColor(Color.BLUE);
-                                    answer4.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -565,10 +405,6 @@ public class QuestionActivity extends AppCompatActivity {
         answer2.setEnabled(true);
         answer3.setEnabled(true);
 
-        answer1.setBackgroundColor(Color.BLUE);
-        answer2.setBackgroundColor(Color.BLUE);
-        answer3.setBackgroundColor(Color.BLUE);
-
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -579,33 +415,20 @@ public class QuestionActivity extends AppCompatActivity {
                         answer3.setEnabled(false);
 
                         if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer1.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer1.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer1.setBackgroundColor(Color.RED);
-                            if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer2.setBackgroundColor(Color.GREEN);
-                            } else if (answer3.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer3.setBackgroundColor(Color.GREEN);
-                            }
-
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
-                                    answer3.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -617,32 +440,20 @@ public class QuestionActivity extends AppCompatActivity {
                         answer3.setEnabled(false);
 
                         if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer2.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer2.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer2.setBackgroundColor(Color.RED);
-                            if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer1.setBackgroundColor(Color.GREEN);
-                            } else if (answer3.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer3.setBackgroundColor(Color.GREEN);
-                            }
-
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
-                                    answer3.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -654,32 +465,20 @@ public class QuestionActivity extends AppCompatActivity {
                         answer3.setEnabled(false);
 
                         if (answer3.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer3.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer3.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer3.setBackgroundColor(Color.RED);
-                            if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer2.setBackgroundColor(Color.GREEN);
-                            } else if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                                answer1.setBackgroundColor(Color.GREEN);
-                            }
-
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
-                                    answer3.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -698,9 +497,6 @@ public class QuestionActivity extends AppCompatActivity {
         answer1.setEnabled(true);
         answer2.setEnabled(true);
 
-        answer1.setBackgroundColor(Color.BLUE);
-        answer2.setBackgroundColor(Color.BLUE);
-
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -709,28 +505,20 @@ public class QuestionActivity extends AppCompatActivity {
                         answer1.setEnabled(false);
                         answer2.setEnabled(false);
                         if (answer1.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer1.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer1.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer1.setBackgroundColor(Color.RED);
-                            answer2.setBackgroundColor(Color.GREEN);
-
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -740,28 +528,20 @@ public class QuestionActivity extends AppCompatActivity {
                         answer1.setEnabled(false);
                         answer2.setEnabled(false);
                         if (answer2.getText().toString().equals(qlist.get(i).getCorrectAnswer())) {
-                            answer2.setBackgroundColor(Color.GREEN);
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     correct++;
-                                    answer2.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
                         } else {
                             //answer is wrong...
-                            answer2.setBackgroundColor(Color.RED);
-                            answer1.setBackgroundColor(Color.GREEN);
-
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
-                                    answer1.setBackgroundColor(Color.BLUE);
-                                    answer2.setBackgroundColor(Color.BLUE);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
