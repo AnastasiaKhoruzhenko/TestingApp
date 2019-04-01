@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.testingapp.R;
@@ -29,6 +32,9 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText regSurname, regName, regEmail, regPassword, regPassword2;
     private Button regButton;
     private ProgressBar regProgressBar;
+    private TextView loginText;
+    private RadioGroup radioGroup;
+    private RadioButton employer, employee;
 
     private FirebaseAuth myAuth;
 
@@ -44,8 +50,10 @@ public class RegistrationActivity extends AppCompatActivity {
         regPassword2=(EditText)findViewById(R.id.regPassword2);
         regButton=(Button)findViewById(R.id.regButton);
         regProgressBar=(ProgressBar)findViewById(R.id.progressBar);
-
-
+        loginText=(TextView)findViewById(R.id.haveAccount);
+        radioGroup=(RadioGroup)findViewById(R.id.radioGroup);
+        employee=(RadioButton)findViewById(R.id.employee);
+        employer=(RadioButton)findViewById(R.id.employer);
 
 //        //--------------------------------------------------------------------//
 //        String inputstr = "КАКОВА ПРОДОЛЖИТЕЛЬНОСТЬ СТАЖИРОВКИ ЭЛЕКТРОТЕХНИЧЕСКОГО ПЕРСОНАЛА ДО НАЗНАЧЕНИЯ НА САМОСТОЯТЕЛЬНУЮ РАБОТУ? /1, П. 1.4.11/\t" +
@@ -151,8 +159,14 @@ public class RegistrationActivity extends AppCompatActivity {
 //        }
 //        //----------------------------------------------------------------------------//
 
-
-
+        loginText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
         //to make progress bar invisible until the button will be pressed
@@ -236,36 +250,6 @@ public class RegistrationActivity extends AppCompatActivity {
         user.put("Name", name);
         user.put("Surname", surname);
         user.put("Email", currentUser.getEmail());
-//        user.put("Билет 1(из 11)",null);
-//        user.put("Билет 2(из 11)",null);
-//        user.put("Билет 3(из 11)",null);
-//        user.put("Билет 4(из 11)",null);
-//        user.put("Билет 5(из 11)",null);
-//        user.put("Билет 6(из 11)",null);
-//        user.put("Билет 7(из 11)",null);
-//        user.put("Билет 8(из 11)",null);
-//        user.put("Билет 9(из 11)",null);
-//        user.put("Билет 10(из 11)",null);
-//        user.put("Билет 11(из 11)",null);
-//        user.put("Билет 12(из 11)",null);
-//        user.put("Билет 13(из 11)",null);
-//        user.put("Билет 14(из 11)",null);
-//        user.put("Билет 15(из 11)",null);
-//        user.put("Билет 16(из 11)",null);
-//        user.put("Билет 17(из 11)",null);
-//        user.put("Билет 18(из 11)",null);
-//        user.put("Билет 19(из 11)",null);
-//        user.put("Билет 20(из 11)",null);
-//        user.put("Билет 21(из 11)",null);
-//        user.put("Билет 22(из 11)",null);
-//        user.put("Билет 23(из 11)",null);
-//        user.put("Билет 24(из 11)",null);
-//        user.put("Билет 25(из 11)",null);
-//        user.put("Билет 26(из 11)",null);
-//        user.put("Билет 27(из 11)",null);
-//        user.put("Билет 28(из 11)",null);
-//        user.put("Билет 29(из 11)",null);
-//        user.put("Билет 30(из 11)",null);
 
         db.collection("Users").document(currentUser.getEmail()).set(user);
 

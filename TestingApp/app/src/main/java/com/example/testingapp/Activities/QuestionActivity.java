@@ -3,6 +3,7 @@ package com.example.testingapp.Activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,27 +12,31 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.testingapp.Modules.Question;
 import com.example.testingapp.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class QuestionActivity extends AppCompatActivity {
 
-    TextView questionNumber, questionText;
+    TextView questionNumber, questionText, timer;
     Button answer1, answer2, answer3, answer4, answer5;
 
-    String ticket_number = "Билет №1";
+    String ticket_number;
     List<Question> qlist;
     Integer correct = 0, total = 0;
+    CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +52,11 @@ public class QuestionActivity extends AppCompatActivity {
         answer3 = (Button) findViewById(R.id.ans3);
         answer4 = (Button) findViewById(R.id.ans4);
         answer5 = (Button) findViewById(R.id.ans5);
+        timer=(TextView)findViewById(R.id.timer);
 
-//        Intent intent = getIntent();
+        Intent intent = getIntent();
 //        //получить выбранный номер билета
-//        ticket_number = intent.getStringExtra("ticket_number");
+        ticket_number = intent.getStringExtra("number");
 
         Log.d("success", "  read intentExtra from HomeActivity");
 
@@ -66,57 +72,57 @@ public class QuestionActivity extends AppCompatActivity {
         total++;
         if (total > 11)
         {
-            Intent homeActivity=new Intent(getApplicationContext(), HomeActivity.class);
-            startActivity(homeActivity);
-            finish();
+            countDownTimer.cancel();
+            Toast.makeText(QuestionActivity.this, "Correct = "+correct, Toast.LENGTH_SHORT).show();
+            addScore();
+            showAlertDialogOfResults(ticket_number);
         } else {
-            switch (qlist.get(i).size)
-            {
-                case 4:
-                    answer1.setText(qlist.get(i).getAnswer1());
-                    answer2.setText(qlist.get(i).getAnswer2());
-                    answer3.setVisibility(View.GONE);
-                    answer4.setVisibility(View.GONE);
-                    answer5.setVisibility(View.GONE);
-                    questionText.setText(qlist.get(i).getQuestion());
-                    questionNumber.setText("Вопрос " + total+" из 11");
-                    chooseFrom2Answers(i);
-                    break;
-                case 5:
-                    answer1.setText(qlist.get(i).getAnswer1());
-                    answer2.setText(qlist.get(i).getAnswer2());
-                    answer3.setText(qlist.get(i).getAnswer3());
-                    answer4.setVisibility(View.GONE);
-                    answer5.setVisibility(View.GONE);
-                    questionText.setText(qlist.get(i).getQuestion());
-                    questionNumber.setText("Вопрос " + total+" из 11");
-                    chooseFrom3Answers(i);
-                    break;
-                case 6:
-                    answer1.setText(qlist.get(i).getAnswer1());
-                    answer2.setText(qlist.get(i).getAnswer2());
-                    answer3.setText(qlist.get(i).getAnswer3());
-                    answer4.setText(qlist.get(i).getAnswer4());
-                    answer5.setVisibility(View.GONE);
-                    questionText.setText(qlist.get(i).getQuestion());
-                    questionNumber.setText("Вопрос " + total+" из 11");
-                    answer1.setEnabled(true);
-                    answer2.setEnabled(true);
-                    answer3.setEnabled(true);
-                    answer4.setEnabled(true);
-                    chooseFrom4Answers(i);
-                    break;
-                case 7:
-                    answer1.setText(qlist.get(i).getAnswer1());
-                    answer2.setText(qlist.get(i).getAnswer2());
-                    answer3.setText(qlist.get(i).getAnswer3());
-                    answer4.setText(qlist.get(i).getAnswer4());
-                    answer5.setText(qlist.get(i).getAnswer5());
-                    questionText.setText(qlist.get(i).getQuestion());
-                    questionNumber.setText("Вопрос " + total+" из 11");
-                    chooseFrom5Answers(i);
-                    break;
-            }
+                switch (qlist.get(i).size) {
+                    case 4:
+                        answer1.setText(qlist.get(i).getAnswer1());
+                        answer2.setText(qlist.get(i).getAnswer2());
+                        answer3.setVisibility(View.GONE);
+                        answer4.setVisibility(View.GONE);
+                        answer5.setVisibility(View.GONE);
+                        questionText.setText(qlist.get(i).getQuestion());
+                        questionNumber.setText("Вопрос " + total + " из 11");
+                        chooseFrom2Answers(i);
+                        break;
+                    case 5:
+                        answer1.setText(qlist.get(i).getAnswer1());
+                        answer2.setText(qlist.get(i).getAnswer2());
+                        answer3.setText(qlist.get(i).getAnswer3());
+                        answer4.setVisibility(View.GONE);
+                        answer5.setVisibility(View.GONE);
+                        questionText.setText(qlist.get(i).getQuestion());
+                        questionNumber.setText("Вопрос " + total + " из 11");
+                        chooseFrom3Answers(i);
+                        break;
+                    case 6:
+                        answer1.setText(qlist.get(i).getAnswer1());
+                        answer2.setText(qlist.get(i).getAnswer2());
+                        answer3.setText(qlist.get(i).getAnswer3());
+                        answer4.setText(qlist.get(i).getAnswer4());
+                        answer5.setVisibility(View.GONE);
+                        questionText.setText(qlist.get(i).getQuestion());
+                        questionNumber.setText("Вопрос " + total + " из 11");
+                        answer1.setEnabled(true);
+                        answer2.setEnabled(true);
+                        answer3.setEnabled(true);
+                        answer4.setEnabled(true);
+                        chooseFrom4Answers(i);
+                        break;
+                    case 7:
+                        answer1.setText(qlist.get(i).getAnswer1());
+                        answer2.setText(qlist.get(i).getAnswer2());
+                        answer3.setText(qlist.get(i).getAnswer3());
+                        answer4.setText(qlist.get(i).getAnswer4());
+                        answer5.setText(qlist.get(i).getAnswer5());
+                        questionText.setText(qlist.get(i).getQuestion());
+                        questionNumber.setText("Вопрос " + total + " из 11");
+                        chooseFrom5Answers(i);
+                        break;
+                }
         }
     }
 
@@ -224,7 +230,6 @@ public class QuestionActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     correct++;
-//                                    answer4.setBackgroundColor(Color.GREEN);
                                     updateQuestion(i + 1);
                                 }
                             }, 1500);
@@ -280,11 +285,6 @@ public class QuestionActivity extends AppCompatActivity {
         answer2.setEnabled(true);
         answer3.setEnabled(true);
         answer4.setEnabled(true);
-
-        answer1.setBackgroundColor(Color.BLUE);
-        answer2.setBackgroundColor(Color.BLUE);
-        answer3.setBackgroundColor(Color.BLUE);
-        answer4.setBackgroundColor(Color.BLUE);
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -559,36 +559,31 @@ public class QuestionActivity extends AppCompatActivity {
      * To show the information about the end of the test in this ticket
      *
      * @param ticket_number
-     * @param score
      */
-    public void showAlertDialogOfResults(final String ticket_number, final String score) {
+    public void showAlertDialogOfResults(final String ticket_number) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Результаты прохождения тестирования!");
         builder.setMessage("Тестирование завершено! Вы можете посмотреть ваши результаты по этому билету во вкладке \"Результаты\"");
         builder.setCancelable(true);
-        builder.setNeutralButton(android.R.string.ok,
+        builder.setNegativeButton("OK",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                        intent.putExtra("tiket_number", ticket_number);
-                        intent.putExtra("score", score);
                         startActivity(intent);
                         finish();
                     }
                 });
 
-        builder.setNeutralButton(android.R.string.yes,
+        builder.setPositiveButton("К результатам",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        //исправить чтобы открывались достижения при нжаатии на кнопку
-                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                        intent.putExtra("tiket_number", ticket_number);
-                        intent.putExtra("score", score);
+                        //чтобы открывались достижения при нжаатии на кнопку
+                        Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -602,7 +597,7 @@ public class QuestionActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("TestQuestions")
                 .document("Questions")
-                .collection(ticket_number)
+                .collection("Билет №"+ticket_number)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -628,8 +623,88 @@ public class QuestionActivity extends AppCompatActivity {
                                     break;
                             }
                         }
+                        startTimer();
                         updateQuestion(0);
                     }
                 });
+    }
+
+    public void addScore()
+    {
+        FirebaseAuth myAuth = FirebaseAuth.getInstance();
+        final String email = myAuth.getCurrentUser().getEmail();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Users")
+                .document(email)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Map<String, Object> map = new HashMap<>();
+
+                        for (int i = 0; i < 30; ++i)
+                            map.put(String.valueOf(i), (String)documentSnapshot.getData().get(String.valueOf(i)));
+                        map.put(ticket_number, String.valueOf(correct) + "/11");
+                        updateScore(email, map);
+                    }
+                });
+    }
+
+    public void updateScore(String email, Map<String, Object> map)
+    {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Users")
+                .document(email)
+                .update(map);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Вы действительно хотите завершить прохождение теста?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Да",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        countDownTimer.cancel();
+                        Intent intent=new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+        builder.setNegativeButton("Отмена",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.show();
+    }
+
+    public void startTimer()
+    {
+        countDownTimer = new CountDownTimer( 60000, 1000)
+        {
+            public void onTick(long l)
+            {
+                timer.setText(""+l/1000);
+            }
+
+            public void onFinish()
+            {
+                addScore();
+                timer.setText("Время истекло!");
+                showAlertDialogOfResults(ticket_number);
+                countDownTimer.cancel();
+            }
+        };
+        countDownTimer.start();
+
     }
 }
