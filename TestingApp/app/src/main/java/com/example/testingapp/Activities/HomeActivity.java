@@ -1,7 +1,11 @@
 package com.example.testingapp.Activities;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -22,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.testingapp.Modules.AdapterResultsWithPieChart;
+import com.example.testingapp.Modules.GMailSender;
 import com.example.testingapp.Modules.Question;
 import com.example.testingapp.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,8 +41,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -51,6 +66,14 @@ public class HomeActivity extends AppCompatActivity {
     private static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
                     "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+
+
+    Session session=null;
+    ProgressDialog progressDialog=null;
+    Context context=null;
+    String rec;
+    String sub, text="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +141,7 @@ public class HomeActivity extends AppCompatActivity {
                         Toast.makeText(HomeActivity.this, "Указать почту работодателя", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.sendResults:
-                        sendAllResults();
+                        getResults();
                         Toast.makeText(HomeActivity.this, "Отправить результаты", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.exit:
@@ -132,8 +155,66 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    private void sendAllResults() {
+    private void sendNew() {
+        context=this;
+        rec="nastia.khoruzhenko@gmail.com";
+        sub="Test";
+
+        Properties properties=new Properties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.socketFactory.port", "465");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.port", "465");
+
+        session=Session.getDefaultInstance(properties, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication(){
+                return new PasswordAuthentication("nastia.khoruzhenko@gmail.com", "Sotufi-24");
+            }
+        });
+
+        progressDialog=ProgressDialog.show(context, "", "Отправка результатов...", true);
+
+        RetrieveFeedTask task=new RetrieveFeedTask();
+        task.execute();
+
+    }
+
+    class RetrieveFeedTask extends AsyncTask<String, Void, String>{
+        @Override
+        protected String doInBackground(String... strings) {
+
+            try{
+
+                Message message=new MimeMessage(session);
+                message.setFrom(new InternetAddress("lizasayfutdinova@gmail.com"));
+                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(rec));
+                message.setSubject(sub);
+                message.setContent(text, "text/plain; charset=utf-8");
+
+                Transport.send(message);
+
+            }catch (MessagingException e)
+            {
+                e.printStackTrace();
+            }catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            progressDialog.dismiss();
+
+        }
+    }
+
+    private void getResults() {
         final String[] to = {""};
+        final String[] resMessage = {""};
         db = FirebaseFirestore.getInstance();
         db.collection("Users")
                 .document(myAuth.getCurrentUser().getEmail())
@@ -143,12 +224,8 @@ public class HomeActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if(documentSnapshot.getData().containsKey("Employer") && (documentSnapshot.getData().get("Employer")!=null))
                             to[0] = String.valueOf(documentSnapshot.getData().get("Employer"));
-                        final Intent intent=new Intent(Intent.ACTION_SEND);
-                        intent.putExtra(Intent.EXTRA_EMAIL, to[0]);
-                        intent.putExtra(Intent.EXTRA_SUBJECT, "Результаты тестирования по технике безопасности");
 
                         final List<String> list=new ArrayList<>();
-                        final String[] resMessage = {""};
 
                         db.collection("Users")
                                 .document(myAuth.getCurrentUser().getEmail())
@@ -171,15 +248,16 @@ public class HomeActivity extends AppCompatActivity {
                                         }
 
                                         if(list.size()==0)
+                                        {
                                             list.add("Не было решено ни одного билета");
+                                            text="Не было решено ни одного билета."+"\n\n\n"+"С уважением, \n"+documentSnapshot.getData().get("Surname")+" "+documentSnapshot.getData().get("Name");
+                                        }else {
+                                            for (int i = 0; i < list.size(); i++)
+                                                text += "Результат билета номер " + (i + 1) + ":  " + list.get(i) + "\n";
+                                            text += "\n\n\nС уважением, \n" + documentSnapshot.getData().get("Surname") + " " + documentSnapshot.getData().get("Name");
+                                        }
 
-                                        for(int i=0;i<list.size();i++)
-                                            resMessage[0] +="Результат билета номер "+(i+1)+":  "+list.get(i)+"\n";
-                                        resMessage[0]+="\n\n\nС уважением, \n"+documentSnapshot.getData().get("Surname")+" "+documentSnapshot.getData().get("Name");
-
-                                        intent.putExtra(Intent.EXTRA_TEXT, resMessage[0]);
-                                        intent.setType("message/rfc822");
-                                        startActivity(Intent.createChooser(intent, "Выберите способ отправки сообщения"));
+                                        sendNew();
                                     }
                                 });
                     }
