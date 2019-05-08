@@ -8,210 +8,300 @@
     tools:context=".Activities.ChooseTicketActivity">
 
     <ScrollView
-        android:layout_width="368dp"
-        android:layout_height="609dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
+        <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="2dp"
+            android:stretchColumns="0,1">
 
             <TextView
                 android:id="@+id/chooseTicketText"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:text="Выберите билет, который еще не решали!!!"
-                tools:layout_editor_absoluteX="176dp"
-                tools:layout_editor_absoluteY="102dp" />
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Выберите билет, который еще не решен"
+                android:textSize="25sp"
+                android:background="@color/colorOrange" />
 
-            <Button
-                android:id="@+id/ticket1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Билет 1" />
+            <TableRow>
 
-            <Button
-                android:id="@+id/ticket2"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 2" />
+                <Button
+                    android:id="@+id/ticket1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 1" />
 
-            <Button
-                android:id="@+id/ticket3"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 3" />
+                <Button
+                    android:id="@+id/ticket2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 2" />
 
-            <Button
-                android:id="@+id/ticket4"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 4" />
+                <Button
+                    android:id="@+id/ticket3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 3" />
+            </TableRow>
 
-            <Button
-                android:id="@+id/ticket5"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 5" />
+            <TableRow>
 
-            <Button
-                android:id="@+id/ticket6"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 6" />
+                <Button
+                    android:id="@+id/ticket4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 4" />
 
-            <Button
-                android:id="@+id/ticket7"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 7" />
+                <Button
+                    android:id="@+id/ticket5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 5" />
 
-            <Button
-                android:id="@+id/ticket8"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 8" />
+                <Button
+                    android:id="@+id/ticket6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 6" />
+            </TableRow>
 
-            <Button
-                android:id="@+id/ticket9"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 9" />
+            <TableRow>
 
-            <Button
-                android:id="@+id/ticket10"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 10" />
+                <Button
+                    android:id="@+id/ticket7"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 7" />
 
-            <Button
-                android:id="@+id/ticket11"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 11" />
+                <Button
+                    android:id="@+id/ticket8"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 8" />
 
-            <Button
-                android:id="@+id/ticket12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Билет 12" />
+                <Button
+                    android:id="@+id/ticket9"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 9" />
+            </TableRow>
 
-            <Button
-                android:id="@+id/ticket13"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 13" />
+            <TableRow>
 
-            <Button
-                android:id="@+id/ticket14"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 14" />
+                <Button
+                    android:id="@+id/ticket10"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 10" />
 
-            <Button
-                android:id="@+id/ticket15"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 15" />
+                <Button
+                    android:id="@+id/ticket11"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 11" />
 
-            <Button
-                android:id="@+id/ticket16"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 16" />
+                <Button
+                    android:id="@+id/ticket12"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 12" />
+            </TableRow>
 
-            <Button
-                android:id="@+id/ticket17"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 17" />
+            <TableRow>
 
-            <Button
-                android:id="@+id/ticket18"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 18" />
+                <Button
+                    android:id="@+id/ticket13"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 13" />
 
-            <Button
-                android:id="@+id/ticket19"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 19" />
+                <Button
+                    android:id="@+id/ticket14"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 14" />
 
-            <Button
-                android:id="@+id/ticket20"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 20" />
+                <Button
+                    android:id="@+id/ticket15"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 15" />
+            </TableRow>
 
-            <Button
-                android:id="@+id/ticket21"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 21" />
+            <TableRow>
 
-            <Button
-                android:id="@+id/ticket22"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 22" />
+                <Button
+                    android:id="@+id/ticket16"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 16" />
 
-            <Button
-                android:id="@+id/ticket23"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Билет 23" />
+                <Button
+                    android:id="@+id/ticket17"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 17" />
 
-            <Button
-                android:id="@+id/ticket24"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 24" />
+                <Button
+                    android:id="@+id/ticket18"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 18" />
+            </TableRow>
 
-            <Button
-                android:id="@+id/ticket25"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 25" />
+            <TableRow>
 
-            <Button
-                android:id="@+id/ticket26"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 26" />
+                <Button
+                    android:id="@+id/ticket19"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 19" />
 
-            <Button
-                android:id="@+id/ticket27"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 27" />
+                <Button
+                    android:id="@+id/ticket20"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 20" />
 
-            <Button
-                android:id="@+id/ticket28"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 28" />
+                <Button
+                    android:id="@+id/ticket21"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 21" />
+            </TableRow>
 
-            <Button
-                android:id="@+id/ticket29"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 29" />
+            <TableRow>
 
-            <Button
-                android:id="@+id/ticket30"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Билет 30" />
-        </LinearLayout>
+                <Button
+                    android:id="@+id/ticket22"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 22" />
+
+                <Button
+                    android:id="@+id/ticket23"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 23" />
+
+                <Button
+                    android:id="@+id/ticket24"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 24" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/ticket25"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 25" />
+
+                <Button
+                    android:id="@+id/ticket26"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 26" />
+
+                <Button
+                    android:id="@+id/ticket27"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 27" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/ticket28"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 28" />
+
+                <Button
+                    android:id="@+id/ticket29"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 29" />
+
+                <Button
+                    android:id="@+id/ticket30"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/field_style_button"
+                    android:text="Билет 30" />
+            </TableRow>
+        </TableLayout>
 
     </ScrollView>
 

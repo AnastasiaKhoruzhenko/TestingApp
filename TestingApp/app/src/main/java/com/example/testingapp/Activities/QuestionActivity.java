@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,13 +31,13 @@ import java.util.Map;
 
 public class QuestionActivity extends AppCompatActivity {
 
-    TextView questionNumber, questionText, timer;
-    Button answer1, answer2, answer3, answer4, answer5;
+    private TextView questionNumber, questionText, timer;
+    private Button answer1, answer2, answer3, answer4, answer5;
 
-    String ticket_number;
-    List<Question> qlist;
-    Integer correct = 0, total = 0;
-    CountDownTimer countDownTimer;
+    private String ticket_number;
+    private List<Question> qlist;
+    private int correct = 0, total = 0;
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,8 @@ public class QuestionActivity extends AppCompatActivity {
             countDownTimer.cancel();
             Toast.makeText(QuestionActivity.this, "Correct = "+correct, Toast.LENGTH_SHORT).show();
             addScore();
-            showAlertDialogOfResults(ticket_number);
+            showAlertDialogOfResults();
+            //fragmentShow();
         } else {
                 switch (qlist.get(i).size) {
                     case 4:
@@ -124,6 +126,12 @@ public class QuestionActivity extends AppCompatActivity {
                         break;
                 }
         }
+    }
+
+    private void fragmentShow() {
+
+        Fragment fragment=new ResFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
     }
 
     private void chooseFrom5Answers(final int i)
@@ -557,10 +565,8 @@ public class QuestionActivity extends AppCompatActivity {
 
     /**
      * To show the information about the end of the test in this ticket
-     *
-     * @param ticket_number
      */
-    public void showAlertDialogOfResults(final String ticket_number) {
+    public void showAlertDialogOfResults() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Результаты прохождения тестирования!");
@@ -572,6 +578,7 @@ public class QuestionActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         finish();
                     }
@@ -584,6 +591,7 @@ public class QuestionActivity extends AppCompatActivity {
                         dialog.cancel();
                         //чтобы открывались достижения при нжаатии на кнопку
                         Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         finish();
                     }
@@ -642,9 +650,10 @@ public class QuestionActivity extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Map<String, Object> map = new HashMap<>();
 
-                        for (int i = 0; i < 30; ++i)
-                            map.put(String.valueOf(i), (String)documentSnapshot.getData().get(String.valueOf(i)));
-                        map.put(ticket_number, String.valueOf(correct) + "/11");
+                        if(!documentSnapshot.getData().containsKey("1"))
+                            for (int i = 0; i < 30; ++i)
+                                map.put(String.valueOf(i+1), null);
+                        map.put(ticket_number, String.valueOf(correct));
                         updateScore(email, map);
                     }
                 });
@@ -689,18 +698,18 @@ public class QuestionActivity extends AppCompatActivity {
 
     public void startTimer()
     {
-        countDownTimer = new CountDownTimer( 60000, 1000)
+        countDownTimer = new CountDownTimer( 180000, 1000)
         {
             public void onTick(long l)
             {
-                timer.setText(""+l/1000);
+                timer.setText((l/1000)/60+":"+(l/1000)%60);
             }
 
             public void onFinish()
             {
                 addScore();
                 timer.setText("Время истекло!");
-                showAlertDialogOfResults(ticket_number);
+                showAlertDialogOfResults();
                 countDownTimer.cancel();
             }
         };

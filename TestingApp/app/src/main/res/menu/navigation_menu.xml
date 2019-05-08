@@ -12,6 +12,11 @@
     </item>
 
     <item
+        android:id="@+id/setEmployerEmail"
+        android:title="Указать почту работодателя">
+    </item>
+
+    <item
         android:id="@+id/sendResults"
         android:title="Отправить результаты">
     </item>

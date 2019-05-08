@@ -17,12 +17,20 @@
     tools:context=".Activities.HomeActivity"
     android:orientation="vertical">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolBarHome"
+            android:background="@color/colorButton"
+            android:minHeight="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        </android.support.v7.widget.Toolbar>
+
     <TextView
         android:id="@+id/testInformation"
         android:layout_width="match_parent"
-        android:layout_height="517dp"
-        android:layout_centerInParent="true"
-        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolBarHome"
         android:text="Информация о тесте..."
         android:textSize="24sp" />
 </RelativeLayout>

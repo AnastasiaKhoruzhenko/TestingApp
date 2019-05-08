@@ -6,8 +6,7 @@ import java.util.List;
 
 public class Question {
     public Integer size;
-    public String question;
-    public String answer1, answer2, answer3, answer4, answer5, correctAnswer;
+    public String question, answer1, answer2, answer3, answer4, answer5, correctAnswer;
 
     public Question(String question, String answer1, String answer2, String answer3, String answer4, String answer5, String correctAnswer)
     {
@@ -81,10 +80,7 @@ public class Question {
         size=4;
     }
 
-    public Question(){}
-
     public String getQuestion(){return question;}
-    public void setQuestion(String question){this.question=question;}
 
     public String getAnswer1(){return answer1;}
     public void setAnswer1(String answer1){this.answer1=answer1;}

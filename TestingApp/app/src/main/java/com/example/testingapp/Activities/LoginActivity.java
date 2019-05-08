@@ -2,6 +2,7 @@ package com.example.testingapp.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,9 +14,20 @@ import android.widget.Toast;
 
 import com.example.testingapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import javax.annotation.Nullable;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,6 +46,9 @@ public class LoginActivity extends AppCompatActivity {
         userPassword=findViewById(R.id.userPassword);
         enter=findViewById(R.id.enterButton);
         loginProgressBar=findViewById(R.id.loginProgressBar);
+
+//        ActionBar actionBar=getSupportActionBar();
+//        actionBar.setTitle("Вход");
 
         myAuth=FirebaseAuth.getInstance();
 
@@ -70,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     loginProgressBar.setVisibility(View.INVISIBLE);
                     enter.setVisibility(View.VISIBLE);
-                    updateUI();
+                    updateUI(mail);
 
                 }else{
 
@@ -82,23 +97,34 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUI() {
+    private void updateUI(String email) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        Intent homeActivity=new Intent(getApplicationContext(), HomeActivity.class);
-        startActivity(homeActivity);
-        finish();
-
+        DocumentReference dsn=db.collection("Users").document(email);
+        dsn.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful())
+                {
+                    if(task.getResult().exists())
+                    {
+                        Intent intent=new Intent(getApplicationContext(), HomeActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        Intent intent=new Intent(getApplicationContext(), EmployerHomeActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+            }
+        });
     }
 
     private void showMessage(String text) {
 
         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
-        startActivity(intent);
-        finish();
     }
 }

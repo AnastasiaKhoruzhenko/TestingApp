@@ -2,6 +2,7 @@ package com.example.testingapp.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -54,6 +57,45 @@ public class RegistrationActivity extends AppCompatActivity {
         radioGroup=(RadioGroup)findViewById(R.id.radioGroup);
         employee=(RadioButton)findViewById(R.id.employee);
         employer=(RadioButton)findViewById(R.id.employer);
+
+//        ActionBar actionBar=getSupportActionBar();
+//        actionBar.setTitle("Регистрация");
+
+        FirebaseFirestore db=FirebaseFirestore.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            DocumentReference dsn=db.collection("Users").document(user.getEmail());
+            dsn.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful())
+                    {
+                        if(task.getResult().exists())
+                        {
+                            Intent intent=new Intent(getApplicationContext(), HomeActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            Intent intent=new Intent(getApplicationContext(), EmployerHomeActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+
+
+//        else{
+//            getSupportFragmentManager().beginTransaction()
+//                    .replace(R.id.auth_frame, new LogInFragment())
+//                    .commit();
+//        }
 
 //        //--------------------------------------------------------------------//
 //        String inputstr = "КАКОВА ПРОДОЛЖИТЕЛЬНОСТЬ СТАЖИРОВКИ ЭЛЕКТРОТЕХНИЧЕСКОГО ПЕРСОНАЛА ДО НАЗНАЧЕНИЯ НА САМОСТОЯТЕЛЬНУЮ РАБОТУ? /1, П. 1.4.11/\t" +
@@ -164,7 +206,6 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -202,10 +243,20 @@ public class RegistrationActivity extends AppCompatActivity {
                         regProgressBar.setVisibility(View.INVISIBLE);
 
                     }else{
-
-                        //everything is OK and all fields are filled
-                        //start to create user account (if email is valid)
-                        createUserAccount(surname, name, email, password);
+                        if(radioGroup.getCheckedRadioButtonId()==-1)
+                        {
+                            showMessage("Выберите тип вашей регистрации.");
+                            regProgressBar.setVisibility(View.INVISIBLE);
+                        }else {
+                            String type="";
+                            if(employee.isChecked())
+                                type="employee";
+                            if(employer.isChecked())
+                                type="employer";
+                            //everything is OK and all fields are filled
+                            //start to create user account (if email is valid)
+                            createUserAccount(surname, name, email, password, type);
+                        }
 
                     }
                 }
@@ -214,7 +265,7 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    private void createUserAccount(final String surname, final String name, String email, String password) {
+    private void createUserAccount(final String surname, final String name, String email, String password, final String type) {
 
         myAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -228,7 +279,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                             regProgressBar.setVisibility(View.INVISIBLE);
                             //update profile information after the creation of account
-                            updateInfo(surname, name, myAuth.getCurrentUser());
+                            updateInfo(surname, name, myAuth.getCurrentUser(), type);
 
                         }else{
 
@@ -243,7 +294,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
-    private void updateInfo(String surname, String name, FirebaseUser currentUser) {
+    private void updateInfo(String surname, String name, FirebaseUser currentUser, final String type) {
 
         FirebaseFirestore db=FirebaseFirestore.getInstance();
         Map<String, Object> user= new HashMap<>();
@@ -251,7 +302,14 @@ public class RegistrationActivity extends AppCompatActivity {
         user.put("Surname", surname);
         user.put("Email", currentUser.getEmail());
 
-        db.collection("Users").document(currentUser.getEmail()).set(user);
+        //если нанимаемый, то добавить поле для email работодателя
+        if(type.equals("employee"))
+        {
+            user.put("Employer",null);
+            db.collection("Users").document(currentUser.getEmail()).set(user);
+        }
+        else if(type.equals("employer"))
+            db.collection("Employer").document(currentUser.getEmail()).set(user);
 
 
         UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
@@ -262,19 +320,22 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 //user info updated successfully
                 showMessage("Регистрация завершена!");
-                updateUI();
+                updateUI(type);
 
             }
         });
 
     }
 
-    private void updateUI() {
-
-        Intent homeActivity=new Intent(getApplicationContext(), HomeActivity.class);
+    private void updateUI(String type) {
+        Intent homeActivity;
+        if(type.equals("employee"))
+            homeActivity=new Intent(getApplicationContext(), HomeActivity.class);
+        else
+            homeActivity=new Intent(getApplicationContext(), EmployerHomeActivity.class);
+        homeActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(homeActivity);
         finish();
-
     }
 
     /**
@@ -282,8 +343,6 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param s - text, that we want to show to the user
      */
     private void showMessage(String s) {
-
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-
     }
 }

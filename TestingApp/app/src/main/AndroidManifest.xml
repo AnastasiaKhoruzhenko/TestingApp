@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.testingapp">
 
     <application
@@ -9,12 +10,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.LoginActivity"></activity>
-        <activity android:name=".Activities.ResultsActivity" />
-        <activity android:name=".Activities.ChooseTicketActivity" />
-        <activity android:name=".Activities.QuestionActivity" />
-        <activity android:name=".Activities.HomeActivity" />
-        <activity android:name=".Activities.RegistrationActivity">
+        <activity android:name=".Activities.InfoActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Activities.EmployerHomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:parentActivityName=".Activities.RegistrationActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.ResultsActivity"
+            android:parentActivityName=".Activities.HomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.ChooseTicketActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.QuestionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.HomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.RegistrationActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
