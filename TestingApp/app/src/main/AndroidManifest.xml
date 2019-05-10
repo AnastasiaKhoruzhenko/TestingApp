@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.QuestionTestActivity">
+            android:name=".Activities.QuestionTestActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Activities.InfoActivity"
@@ -36,15 +37,8 @@
             android:name=".Activities.ChooseTicketActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.QuestionActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Activities.HomeActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".Activities.RegistrationActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".Activities.LoginActivity"/>
     </application>
 
 </manifest>
