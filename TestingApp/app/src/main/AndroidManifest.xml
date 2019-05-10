@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.testingapp">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,32 +11,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.InfoActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Activities.EmployerHomeActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.QuestionTestActivity">
+        </activity>
+        <activity
+            android:name=".Activities.InfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.EmployerHomeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.LoginActivity"
-            android:parentActivityName=".Activities.RegistrationActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".Activities.ResultsActivity"
             android:parentActivityName=".Activities.HomeActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.ChooseTicketActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.QuestionActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.HomeActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.RegistrationActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.ChooseTicketActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.QuestionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.RegistrationActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activities.LoginActivity"/>
     </application>
 
 </manifest>

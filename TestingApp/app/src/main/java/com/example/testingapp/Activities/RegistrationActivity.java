@@ -35,7 +35,6 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText regSurname, regName, regEmail, regPassword, regPassword2;
     private Button regButton;
     private ProgressBar regProgressBar;
-    private TextView loginText;
     private RadioGroup radioGroup;
     private RadioButton employer, employee;
 
@@ -53,49 +52,9 @@ public class RegistrationActivity extends AppCompatActivity {
         regPassword2=(EditText)findViewById(R.id.regPassword2);
         regButton=(Button)findViewById(R.id.regButton);
         regProgressBar=(ProgressBar)findViewById(R.id.progressBar);
-        loginText=(TextView)findViewById(R.id.haveAccount);
         radioGroup=(RadioGroup)findViewById(R.id.radioGroup);
         employee=(RadioButton)findViewById(R.id.employee);
         employer=(RadioButton)findViewById(R.id.employer);
-
-//        ActionBar actionBar=getSupportActionBar();
-//        actionBar.setTitle("Регистрация");
-
-        FirebaseFirestore db=FirebaseFirestore.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            DocumentReference dsn=db.collection("Users").document(user.getEmail());
-            dsn.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if(task.isSuccessful())
-                    {
-                        if(task.getResult().exists())
-                        {
-                            Intent intent=new Intent(getApplicationContext(), HomeActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                        }else{
-                            Intent intent=new Intent(getApplicationContext(), EmployerHomeActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-                }
-            });
-        }
-
-
-
-
-
-//        else{
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.auth_frame, new LogInFragment())
-//                    .commit();
-//        }
 
 //        //--------------------------------------------------------------------//
 //        String inputstr = "КАКОВА ПРОДОЛЖИТЕЛЬНОСТЬ СТАЖИРОВКИ ЭЛЕКТРОТЕХНИЧЕСКОГО ПЕРСОНАЛА ДО НАЗНАЧЕНИЯ НА САМОСТОЯТЕЛЬНУЮ РАБОТУ? /1, П. 1.4.11/\t" +
@@ -200,15 +159,6 @@ public class RegistrationActivity extends AppCompatActivity {
 //            ++i;
 //        }
 //        //----------------------------------------------------------------------------//
-
-        loginText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
         //to make progress bar invisible until the button will be pressed
         regProgressBar.setVisibility(View.INVISIBLE);

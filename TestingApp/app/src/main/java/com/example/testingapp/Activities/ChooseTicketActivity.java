@@ -70,7 +70,7 @@ public class ChooseTicketActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent intent=new Intent(getApplicationContext(), QuestionActivity.class);
+                Intent intent=new Intent(getApplicationContext(), QuestionTestActivity.class);
                 int index = Arrays.asList(BUTTON_ID).indexOf(v.getId());
                 intent.putExtra("number", String.valueOf(index+1));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

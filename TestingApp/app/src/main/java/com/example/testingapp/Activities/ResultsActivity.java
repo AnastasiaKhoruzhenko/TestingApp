@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,11 +16,6 @@ import com.example.testingapp.Modules.AdapterInfo;
 import com.example.testingapp.Modules.AdapterResultsWithPieChart;
 import com.example.testingapp.Modules.RecyclerItem;
 import com.example.testingapp.R;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -50,21 +46,20 @@ public class ResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-//        ActionBar actionBar=getSupportActionBar();
-//        actionBar.setTitle("Результаты");
-
-
         recyclerView=findViewById(R.id.recyclerView);
+
+        Toolbar toolbar=findViewById(R.id.toolBarHome);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Результаты");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setBackgroundColor(getResources().getColor(R.color.colorButton));
         listItems=new ArrayList<>();
         countCorrect=new ArrayList<>();
         ticketCorrect=new ArrayList<>();
 
         LoadResults();
-
-
     }
 
     public void LoadResults()

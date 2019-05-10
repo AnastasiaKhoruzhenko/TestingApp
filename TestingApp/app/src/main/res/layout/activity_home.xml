@@ -15,24 +15,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.HomeActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+        android:background="@drawable/homebackground">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolBarHome"
-            android:background="@color/colorButton"
+            android:background="@color/colorDarkBlue"
             android:minHeight="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            app:titleTextColor="@color/colorWhite">
         </android.support.v7.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/testInformation"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolBarHome"
-        android:text="Информация о тесте..."
-        android:textSize="24sp" />
+        android:layout_height="match_parent"
+        android:padding="7dp"
+        android:layout_below="@id/toolBarHome"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/testInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Информация о тесте..."
+            android:textAlignment="center"
+            android:background="@drawable/circlelay"
+
+            android:textSize="24sp" />
+
+    </RelativeLayout>
 </RelativeLayout>
 
     <android.support.design.widget.NavigationView

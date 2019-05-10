@@ -29,8 +29,7 @@
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="Выберите билет, который еще не решен"
-                android:textSize="25sp"
-                android:background="@color/colorOrange" />
+                android:textSize="25sp" />
 
             <TableRow>
 
@@ -39,24 +38,24 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 1" />
+                    android:background="@drawable/blue_style"
+                    android:text="1" />
 
                 <Button
                     android:id="@+id/ticket2"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 2" />
+                    android:background="@drawable/blue_style"
+                    android:text="2" />
 
                 <Button
                     android:id="@+id/ticket3"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 3" />
+                    android:background="@drawable/blue_style"
+                    android:text="3" />
             </TableRow>
 
             <TableRow>
@@ -66,24 +65,24 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 4" />
+                    android:background="@drawable/blue_style"
+                    android:text="4" />
 
                 <Button
                     android:id="@+id/ticket5"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 5" />
+                    android:background="@drawable/blue_style"
+                    android:text="5" />
 
                 <Button
                     android:id="@+id/ticket6"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 6" />
+                    android:background="@drawable/blue_style"
+                    android:text="6" />
             </TableRow>
 
             <TableRow>
@@ -93,24 +92,24 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 7" />
+                    android:background="@drawable/blue_style"
+                    android:text="7" />
 
                 <Button
                     android:id="@+id/ticket8"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 8" />
+                    android:background="@drawable/blue_style"
+                    android:text="8" />
 
                 <Button
                     android:id="@+id/ticket9"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 9" />
+                    android:background="@drawable/blue_style"
+                    android:text="9" />
             </TableRow>
 
             <TableRow>
@@ -120,24 +119,24 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 10" />
+                    android:background="@drawable/blue_style"
+                    android:text="10" />
 
                 <Button
                     android:id="@+id/ticket11"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 11" />
+                    android:background="@drawable/blue_style"
+                    android:text="11" />
 
                 <Button
                     android:id="@+id/ticket12"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 12" />
+                    android:background="@drawable/blue_style"
+                    android:text="12" />
             </TableRow>
 
             <TableRow>
@@ -147,24 +146,24 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 13" />
+                    android:background="@drawable/blue_style"
+                    android:text="13" />
 
                 <Button
                     android:id="@+id/ticket14"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 14" />
+                    android:background="@drawable/blue_style"
+                    android:text="14" />
 
                 <Button
                     android:id="@+id/ticket15"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 15" />
+                    android:background="@drawable/blue_style"
+                    android:text="15" />
             </TableRow>
 
             <TableRow>
@@ -174,24 +173,24 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 16" />
+                    android:background="@drawable/blue_style"
+                    android:text="16" />
 
                 <Button
                     android:id="@+id/ticket17"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 17" />
+                    android:background="@drawable/blue_style"
+                    android:text="17" />
 
                 <Button
                     android:id="@+id/ticket18"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 18" />
+                    android:background="@drawable/blue_style"
+                    android:text="18" />
             </TableRow>
 
             <TableRow>
@@ -201,24 +200,24 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 19" />
+                    android:background="@drawable/blue_style"
+                    android:text="19" />
 
                 <Button
                     android:id="@+id/ticket20"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 20" />
+                    android:background="@drawable/blue_style"
+                    android:text="20" />
 
                 <Button
                     android:id="@+id/ticket21"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 21" />
+                    android:background="@drawable/blue_style"
+                    android:text="21" />
             </TableRow>
 
             <TableRow>
@@ -228,24 +227,24 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 22" />
+                    android:background="@drawable/blue_style"
+                    android:text="22" />
 
                 <Button
                     android:id="@+id/ticket23"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 23" />
+                    android:background="@drawable/blue_style"
+                    android:text="23" />
 
                 <Button
                     android:id="@+id/ticket24"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 24" />
+                    android:background="@drawable/blue_style"
+                    android:text="24" />
             </TableRow>
 
             <TableRow>
@@ -255,24 +254,24 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 25" />
+                    android:background="@drawable/blue_style"
+                    android:text="25" />
 
                 <Button
                     android:id="@+id/ticket26"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 26" />
+                    android:background="@drawable/blue_style"
+                    android:text="26" />
 
                 <Button
                     android:id="@+id/ticket27"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 27" />
+                    android:background="@drawable/blue_style"
+                    android:text="27" />
             </TableRow>
 
             <TableRow>
@@ -282,24 +281,24 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 28" />
+                    android:background="@drawable/blue_style"
+                    android:text="28" />
 
                 <Button
                     android:id="@+id/ticket29"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 29" />
+                    android:background="@drawable/blue_style"
+                    android:text="29" />
 
                 <Button
                     android:id="@+id/ticket30"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_margin="15dp"
-                    android:background="@drawable/field_style_button"
-                    android:text="Билет 30" />
+                    android:background="@drawable/blue_style"
+                    android:text="30" />
             </TableRow>
         </TableLayout>
 

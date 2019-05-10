@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -34,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userLogin, userPassword;
     private Button enter;
 
+    private TextView regText;
+
     private ProgressBar loginProgressBar;
     private FirebaseAuth myAuth;
 
@@ -46,11 +49,43 @@ public class LoginActivity extends AppCompatActivity {
         userPassword=findViewById(R.id.userPassword);
         enter=findViewById(R.id.enterButton);
         loginProgressBar=findViewById(R.id.loginProgressBar);
+        regText=(TextView)findViewById(R.id.haveAccount);
 
-//        ActionBar actionBar=getSupportActionBar();
-//        actionBar.setTitle("Вход");
+        FirebaseFirestore db=FirebaseFirestore.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            DocumentReference dsn=db.collection("Users").document(user.getEmail());
+            dsn.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful())
+                    {
+                        if(task.getResult().exists())
+                        {
+                            Intent intent=new Intent(getApplicationContext(), HomeActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            Intent intent=new Intent(getApplicationContext(), EmployerHomeActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                }
+            });
+        }
 
         myAuth=FirebaseAuth.getInstance();
+
+        regText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(), RegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
 
         loginProgressBar.setVisibility(View.INVISIBLE);
         enter.setOnClickListener(new View.OnClickListener() {
