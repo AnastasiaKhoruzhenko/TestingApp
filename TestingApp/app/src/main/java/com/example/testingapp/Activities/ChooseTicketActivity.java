@@ -3,6 +3,7 @@ package com.example.testingapp.Activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -36,6 +37,10 @@ public class ChooseTicketActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_ticket);
 
         chooseTicketText=(TextView)findViewById(R.id.chooseTicketText);
+
+        Toolbar toolbar=findViewById(R.id.toolBarHome);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         myAuth = FirebaseAuth.getInstance();
         final String email = myAuth.getCurrentUser().getEmail();

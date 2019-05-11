@@ -45,12 +45,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        userLogin=findViewById(R.id.userLogin);
-        userPassword=findViewById(R.id.userPassword);
-        enter=findViewById(R.id.enterButton);
-        loginProgressBar=findViewById(R.id.loginProgressBar);
-        regText=(TextView)findViewById(R.id.haveAccount);
-
         FirebaseFirestore db=FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -75,37 +69,44 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
             });
-        }
+        }else {
 
-        myAuth=FirebaseAuth.getInstance();
+            userLogin = findViewById(R.id.userLogin);
+            userPassword = findViewById(R.id.userPassword);
+            enter = findViewById(R.id.enterButton);
+            loginProgressBar = findViewById(R.id.loginProgressBar);
+            regText = (TextView) findViewById(R.id.haveAccount);
 
-        regText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(), RegistrationActivity.class);
-                startActivity(intent);
-            }
-        });
+            myAuth = FirebaseAuth.getInstance();
 
-        loginProgressBar.setVisibility(View.INVISIBLE);
-        enter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loginProgressBar.setVisibility(View.VISIBLE);
-                enter.setVisibility(View.INVISIBLE);
-
-                final String mail=userLogin.getText().toString();
-                final String password=userPassword.getText().toString();
-
-                if(mail.isEmpty()||password.isEmpty()){
-                    showMessage("Не введен логин или пароль.");
-                    loginProgressBar.setVisibility(View.INVISIBLE);
-                    enter.setVisibility(View.VISIBLE);
-                }else{
-                    signIn(mail, password);
+            regText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
+                    startActivity(intent);
                 }
-            }
-        });
+            });
+
+            loginProgressBar.setVisibility(View.INVISIBLE);
+            enter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    loginProgressBar.setVisibility(View.VISIBLE);
+                    enter.setVisibility(View.INVISIBLE);
+
+                    final String mail = userLogin.getText().toString();
+                    final String password = userPassword.getText().toString();
+
+                    if (mail.isEmpty() || password.isEmpty()) {
+                        showMessage("Не введен логин или пароль.");
+                        loginProgressBar.setVisibility(View.INVISIBLE);
+                        enter.setVisibility(View.VISIBLE);
+                    } else {
+                        signIn(mail, password);
+                    }
+                }
+            });
+        }
 
     }
 

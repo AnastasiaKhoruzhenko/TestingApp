@@ -5,13 +5,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorDarkBlue">
 
     <ImageView
         android:layout_width="110dp"
         android:layout_height="130dp"
         android:layout_marginTop="13dp"
         android:layout_marginBottom="13dp"
-        android:background="@drawable/ic_android_black_24dp"/>
+        android:background="@drawable/electrician"/>
 
 </LinearLayout>
