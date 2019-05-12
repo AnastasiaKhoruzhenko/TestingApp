@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="300dp">
+
+    <RelativeLayout
+        android:id="@+id/rel"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorOrange">
+
+        <ImageView
+            android:id="@+id/imageAlert"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/clock"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/firstInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/rel"
+        android:textSize="20sp"
+        android:text="Время вышло!"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/secondInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/firstInfo"
+        android:text="Ваши результаты сохранены"
+        android:gravity="center"/>
+
+
+</RelativeLayout>

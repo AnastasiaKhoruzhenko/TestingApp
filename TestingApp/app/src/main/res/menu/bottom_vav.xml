@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navChart"
+        android:icon="@drawable/chart_vector"
+        android:title="Рейтинг">
+    </item>
+
+    <item
+        android:id="@+id/navTickets"
+        android:icon="@drawable/tickets_vector"
+        android:title="По билетам">
+    </item>
+
+</menu>
