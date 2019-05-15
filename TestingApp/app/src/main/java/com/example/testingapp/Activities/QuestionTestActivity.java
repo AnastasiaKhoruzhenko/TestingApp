@@ -8,11 +8,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -565,6 +563,7 @@ public class QuestionTestActivity extends AppCompatActivity {
         }
         alertDialog.setView(dialogLayout);
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.setCanceledOnTouchOutside(false);
 
         alertDialog.show();
     }

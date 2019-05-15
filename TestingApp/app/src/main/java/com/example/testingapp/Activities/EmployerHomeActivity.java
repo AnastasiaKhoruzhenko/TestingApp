@@ -15,7 +15,6 @@ import com.example.testingapp.Modules.Person;
 import com.example.testingapp.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -27,8 +26,6 @@ public class EmployerHomeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private MyAdapter adapter;
-
-    private Toolbar toolbar;
     private SearchView searchView;
 
     @Override
@@ -36,7 +33,7 @@ public class EmployerHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_home);
 
-        toolbar=findViewById(R.id.toolBar);
+        Toolbar toolbar = findViewById(R.id.toolBar1);
         searchView=findViewById(R.id.searchView);
 
         recyclerView=findViewById(R.id.recyclerView);
@@ -117,36 +114,4 @@ public class EmployerHomeActivity extends AppCompatActivity {
         }
         return true;
     }
-
-//    public void getPeople()
-//    {
-//        final FirebaseAuth myAuth=FirebaseAuth.getInstance();
-//
-//        final String email=myAuth.getCurrentUser().getEmail();
-//
-//        FirebaseFirestore db=FirebaseFirestore.getInstance();
-//
-//        db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//            @Override
-//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                for(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots)
-//                {
-//                    Person person=new Person(documentSnapshot.getString("Name"), documentSnapshot.getString("Surname"), documentSnapshot.getString("Email"), documentSnapshot.getString("Employer"));
-//                    if(person.getEmployerEmail()!=null && person.getEmployerEmail().equals(email))
-//                        personList.add(person);
-//                }
-//
-//                getAllItems(personList);
-//            }
-//        });
-//    }
-//
-//    private void getAllItems(List<Person> personList) {
-//        for(int i=0;i<personList.size();i++)
-//        {
-//            listItems.add(new RecyclerItem(personList.get(i).getEmail(), personList.get(i).getSurname()+" "+personList.get(i).getName()));
-//        }
-//        adapter=new MyAdapter(listItems, this);
-//        recyclerView.setAdapter(adapter);
-//    }
 }

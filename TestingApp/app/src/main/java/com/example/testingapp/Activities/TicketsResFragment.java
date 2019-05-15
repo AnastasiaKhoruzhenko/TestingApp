@@ -80,8 +80,8 @@ public class TicketsResFragment extends Fragment {
 
                         //для общей информации
                         tmp = documentSnapshot.getData().get(String.valueOf("Surname")).toString() + "  " + documentSnapshot.getData().get(String.valueOf("Name")).toString();
-                        nameSurname.setText(tmp);
-                        emailText.setText(documentSnapshot.getData().get(String.valueOf("Email")).toString());
+                        nameSurname.setText("ФИ: "+tmp);
+                        emailText.setText("Email: "+documentSnapshot.getData().get(String.valueOf("Email")).toString());
 
                     }
                 })

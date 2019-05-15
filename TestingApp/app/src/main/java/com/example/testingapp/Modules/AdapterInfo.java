@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.testingapp.R;
-import com.google.protobuf.StringValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +27,7 @@ public class AdapterInfo extends RecyclerView.Adapter<AdapterInfo.ViewHolder>{
     @Override
     public AdapterInfo.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.info_ticket_item, viewGroup, false);
-        final AdapterInfo.ViewHolder viewHolder = new AdapterInfo.ViewHolder(v);
-        return viewHolder;
+        return new ViewHolder(v);
     }
 
     @Override

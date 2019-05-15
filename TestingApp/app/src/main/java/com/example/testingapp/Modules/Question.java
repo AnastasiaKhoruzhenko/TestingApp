@@ -1,12 +1,11 @@
 package com.example.testingapp.Modules;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Question {
     public Integer size;
-    public String question, answer1, answer2, answer3, answer4, answer5, correctAnswer;
+    private String question, answer1, answer2, answer3, answer4, answer5, correctAnswer;
 
     public Question(String question, String answer1, String answer2, String answer3, String answer4, String answer5, String correctAnswer)
     {

@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/questionnaire"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/questionnaire"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -21,7 +21,8 @@
         </activity>
         <activity
             android:name=".Activities.InfoActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activities.EmployerHomeActivity"/>
         <activity
             android:name=".Activities.EmployerHomeActivity"
             android:screenOrientation="portrait" />
@@ -39,7 +40,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.ChooseTicketActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".Activities.HomeActivity"/>
         <activity
             android:name=".Activities.HomeActivity"
             android:screenOrientation="portrait" />

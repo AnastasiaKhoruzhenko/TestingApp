@@ -3,27 +3,32 @@
 
     <item
         android:id="@+id/listOfTickets"
-        android:title="Список билетов">
+        android:title="Список билетов"
+        android:icon="@drawable/ticket_list">
     </item>
 
     <item
         android:id="@+id/results"
-        android:title="Результаты тестирования">
+        android:title="Результаты тестирования"
+        android:icon="@drawable/results">
     </item>
 
     <item
         android:id="@+id/setEmployerEmail"
-        android:title="Указать почту работодателя">
+        android:title="Указать почту работодателя"
+        android:icon="@drawable/setemail">
     </item>
 
     <item
         android:id="@+id/sendResults"
-        android:title="Отправить результаты">
+        android:title="Отправить результаты"
+        android:icon="@drawable/sendemail">
     </item>
 
     <item
         android:id="@+id/exit"
-        android:title="Выйти">
+        android:title="Выйти"
+        android:icon="@drawable/exit">
     </item>
 
 </menu>

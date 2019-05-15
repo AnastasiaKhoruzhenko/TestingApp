@@ -8,7 +8,7 @@
     tools:context=".Activities.ChooseTicketActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolBarHome"
+        android:id="@+id/toolBarHome1"
         android:background="@color/colorDarkBlue"
         android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
@@ -19,12 +19,13 @@
     <TextView
         android:id="@+id/chooseTicketText"
         android:layout_width="match_parent"
-        android:layout_below="@+id/toolBarHome"
+        android:layout_below="@+id/toolBarHome1"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:gravity="center"
-        android:text="Выберите билет, который еще не решен"
-        android:textSize="25sp" />
+        android:text="Решеные ранее билеты недоступны для прохождения"
+        android:textColor="@color/colorOrange"
+        android:textSize="20sp" />
 
     <ScrollView
         android:layout_width="wrap_content"

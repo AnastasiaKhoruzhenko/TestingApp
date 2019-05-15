@@ -59,14 +59,10 @@ public class HomeActivity extends AppCompatActivity {
     private static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
                     "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-
-
-    Session session=null;
-    ProgressDialog progressDialog=null;
-    Context context=null;
-    String rec;
-    String sub, text="";
+    private Session session=null;
+    private ProgressDialog progressDialog=null;
+    private Context context=null;
+    private String rec, sub, text="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,11 +127,9 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.setEmployerEmail:
                         showAlertDialogWithEmailField();
-                        Toast.makeText(HomeActivity.this, "Указать почту работодателя", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.sendResults:
                         getResults();
-                        Toast.makeText(HomeActivity.this, "Отправить результаты", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.exit:
                         showAlertDialogExit();
@@ -260,7 +254,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //return actionBarDrawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
         drawerLayout.openDrawer(GravityCompat.START);
         return true;
     }
@@ -309,7 +302,7 @@ public class HomeActivity extends AppCompatActivity {
                                     updateEmployerEmail(email, map);
                                     wantToCloseDialog[0] = true;
                                 }else{
-                                    Toast.makeText(HomeActivity.this, "Неверная маска электронной почты", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(HomeActivity.this, "Некорректный электронный адрес", Toast.LENGTH_SHORT).show();
                                 }
 
                                 if (wantToCloseDialog[0])
@@ -375,8 +368,8 @@ public class HomeActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START);
-//        else{
-//
-//        }
+        else{
+            showAlertDialogExit();
+        }
     }
 }

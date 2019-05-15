@@ -14,11 +14,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ChooseTicketActivity extends AppCompatActivity {
@@ -38,9 +35,10 @@ public class ChooseTicketActivity extends AppCompatActivity {
 
         chooseTicketText=(TextView)findViewById(R.id.chooseTicketText);
 
-        Toolbar toolbar=findViewById(R.id.toolBarHome);
+        Toolbar toolbar=findViewById(R.id.toolBarHome1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Выберите билет");
 
         myAuth = FirebaseAuth.getInstance();
         final String email = myAuth.getCurrentUser().getEmail();
@@ -89,12 +87,4 @@ public class ChooseTicketActivity extends AppCompatActivity {
             button.setOnClickListener(onClickListener);
         }
     }
-
-//    @Override
-//    public void onBackPressed()
-//    {
-//        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-//        startActivity(intent);
-//        finish();
-//    }
 }

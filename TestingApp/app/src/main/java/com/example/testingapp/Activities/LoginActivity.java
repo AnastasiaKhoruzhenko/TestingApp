@@ -2,41 +2,30 @@ package com.example.testingapp.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.testingapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import javax.annotation.Nullable;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText userLogin, userPassword;
     private Button enter;
-
-    private TextView regText;
-
     private ProgressBar loginProgressBar;
     private FirebaseAuth myAuth;
 
@@ -47,6 +36,13 @@ public class LoginActivity extends AppCompatActivity {
 
         FirebaseFirestore db=FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        RelativeLayout rel=findViewById(R.id.startWhite);
+        ProgressBar pr=findViewById(R.id.progressBarStart);
+        pr.setVisibility(View.VISIBLE);
+        enter = findViewById(R.id.enterButton);
+        enter.setVisibility(View.INVISIBLE);
+
         if (user != null) {
             DocumentReference dsn=db.collection("Users").document(user.getEmail());
             dsn.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -70,12 +66,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }else {
-
+            rel.setVisibility(View.INVISIBLE);
+            pr.setVisibility(View.INVISIBLE);
             userLogin = findViewById(R.id.userLogin);
+            enter.setVisibility(View.VISIBLE);
             userPassword = findViewById(R.id.userPassword);
-            enter = findViewById(R.id.enterButton);
             loginProgressBar = findViewById(R.id.loginProgressBar);
-            regText = (TextView) findViewById(R.id.haveAccount);
+            TextView regText = (TextView) findViewById(R.id.haveAccount);
 
             myAuth = FirebaseAuth.getInstance();
 
@@ -98,11 +95,11 @@ public class LoginActivity extends AppCompatActivity {
                     final String password = userPassword.getText().toString();
 
                     if (mail.isEmpty() || password.isEmpty()) {
-                        showMessage("Не введен логин или пароль.");
+                        showMessage("Не введен логин или пароль");
                         loginProgressBar.setVisibility(View.INVISIBLE);
                         enter.setVisibility(View.VISIBLE);
                     } else {
-                        signIn(mail, password);
+                            signIn(mail, password);
                     }
                 }
             });
@@ -122,12 +119,13 @@ public class LoginActivity extends AppCompatActivity {
                     loginProgressBar.setVisibility(View.INVISIBLE);
                     enter.setVisibility(View.VISIBLE);
                     updateUI(mail);
+                    showMessage("Вход выполнен");
 
                 }else{
 
                     loginProgressBar.setVisibility(View.INVISIBLE);
                     enter.setVisibility(View.VISIBLE);
-                    showMessage(task.getException().getMessage());
+                    showMessage("Логин или пароль введены неверно");
                 }
             }
         });
@@ -160,7 +158,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showMessage(String text) {
-
-        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
 }

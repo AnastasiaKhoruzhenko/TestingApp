@@ -1,7 +1,7 @@
 package com.example.testingapp.Modules;
 
 public class Person {
-    public String name, surname, email, employerEmail;
+    private String name, surname, email, employerEmail;
 
     public Person(String name, String surname, String email, String employerEmail)
     {
